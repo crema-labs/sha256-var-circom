@@ -18,7 +18,7 @@ describe("Sha256Var", () => {
       for (let i = 120; i < 183; i++) {
         const message = Array(183).fill("a").join("");
         const lenInBits = message.length * 8;
-        const input = msgToBits(message, 2 << blocks);
+        const input = msgToBits(message, 1 << blocks);
         const msgHash = crypto.createHash("sha256").update(message).digest("hex");
 
         await circuit.expectPass(
