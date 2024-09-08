@@ -1,6 +1,6 @@
 pragma circom 2.1.9;
 
-include "./Sha256Input.circom";
+include "./sha256Input.circom";
 include "circomlib/circuits/mux1.circom";
 include "circomlib/circuits/mux2.circom";
 include "circomlib/circuits/mux3.circom";
