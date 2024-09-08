@@ -1,6 +1,6 @@
 {
   "add": {
-    "file": "add",
-    "template": "Add"
+    "file": "sha256Var",
+    "template": "sha256Var"
   }
 }
