@@ -6,23 +6,25 @@ describe("Sha256Var", () => {
   let circuit: WitnessTester<["in", "len"], ["out"]>;
 
   describe("Sha256Var", () => {
+    let blocks;
     //todo add more tests
     it("Should generate input for 120-183 len (3 blocks)", async () => {
+      blocks = 3;
       circuit = await circomkit.WitnessTester(`Sha256Var`, {
         file: "sha256Var",
         template: "Sha256Var",
-        params: [3],
+        params: [blocks],
       });
       for (let i = 120; i < 183; i++) {
         const message = Array(183).fill("a").join("");
-        const len = message.length * 8;
-        const input = msgToBits(message, 8);
+        const lenInBits = message.length * 8;
+        const input = msgToBits(message, 2 << blocks);
         const msgHash = crypto.createHash("sha256").update(message).digest("hex");
 
         await circuit.expectPass(
           {
             in: input,
-            len,
+            len: lenInBits,
           },
           { out: bufferToBitArray(Buffer.from(msgHash, "hex")) }
         );
